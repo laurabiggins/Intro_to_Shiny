@@ -1,86 +1,73 @@
 library(shiny)
+library(bslib)
 
-ui <- fluidPage(
-  h1("Inputs"),
-  br(),
-  fluidRow(
-    column(6, offset = 0.5,
-      wellPanel(
-        verticalLayout(
-          fluidRow(
-            column(5,strong('actionButton()')),
-            column(7, actionButton(inputId = "", label = "action button"))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('actionLink()')), 
-            column(7, actionLink(inputId = "", label = "action link"))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('checkboxGroupInput()')), 
-            column(7, checkboxGroupInput(inputId = "", label = NULL, choices = c("apple", "pear", "banana")))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('checkboxInput()')), 
-            column(7, checkboxInput(inputId = "", label = "single checkbox"))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('dateInput()')), 
-            column(7, dateInput(inputId = "", label = NULL))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('dateRangeInput()')), 
-            column(7, dateRangeInput(inputId = "", label = NULL))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('numericInput()')), 
-            column(7, numericInput( inputId = "", label = NULL, value = 8))
-          )
-        )
-      )
+ui <- page_fillable(
+  
+  layout_column_wrap(
+    width = 1/4, height = 150, title = "Inputs",
+
+    card(
+      card_header("actionButton()"),
+      actionButton(inputId = "", label = "action button")
     ),
-    column(5, offset = 0.5,
-      wellPanel(
-        verticalLayout(
-          fluidRow(
-            column(5, strong('passwordInput()')), 
-            column(7, passwordInput(inputId = "", label = NULL))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('radioButtons()')), 
-            column(7, radioButtons( inputId = "", label = NULL, choices = c("choose me", "or me", "or this option")),)
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('selectInput()')), 
-            column(7, selectInput(inputId = "", label = NULL, choices = c("choose me", "or me", "or this option")),)
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('sliderInput()')), 
-            column(7, sliderInput(inputId = "", label = NULL, min = 5, max = 500, value = 20, step = 50))
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('textInput()')), 
-            column(7, textInput(inputId = "", label = NULL),)
-          ),
-          hr(style = "border: 0.5px double #141f80;"),
-          fluidRow(
-            column(5, strong('fileInput()')), 
-            column(7, fileInput(inputId = "", label = NULL))
-          )
-        )
-      )  
-    )  
+    card(
+      card_header("actionLink()"), 
+      actionLink(inputId = "", label = "action link")
+    ),
+    card(
+      card_header("checkboxGroupInput()"), 
+      checkboxGroupInput(inputId = "", label = NULL, choices = c("apple", "pear", "banana"))
+    ),
+    card(
+      card_header("checkboxInput()"),
+      checkboxInput(inputId = "", label = "single checkbox")
+    ),
+    card(
+      card_header("dateInput()"),
+      dateInput(inputId = "", label = NULL)
+    ),
+    # card(
+    #   card_header("dateRangeInput()"),
+    #   dateRangeInput(inputId = "", label = NULL)
+    # ),  # remove this so they fit in a grid layout better
+    card(
+      card_header("numericInput()"),
+      numericInput( inputId = "", label = NULL, value = 8)
+    ),
+    card(
+      card_header("passwordInput()"),
+      passwordInput(inputId = "", label = NULL)
+    ),
+    
+    card(
+      card_header("radioButtons()"),
+      radioButtons(inputId = "", label = NULL, choices = c("choose me", "or me", "or this option"))
+    ),
+    
+    card(
+      card_header("selectInput()"),
+      selectInput(inputId = "", label = NULL, choices = c("choose me", "or me", "or this option"))
+    ),
+    
+    card(
+      card_header("sliderInput()"),
+      sliderInput(inputId = "", label = NULL, min = 5, max = 500, value = 20, step = 50)
+    ),
+    
+    card(
+      card_header("textInput()"),
+      textInput(inputId = "", label = NULL)
+    ),
+    
+    card(
+      card_header("fileInput()"),
+      fileInput(inputId = "", label = NULL)
+    )
   )
 )
+    
+    
+
   
 server <- function(input, output, session) {
 }

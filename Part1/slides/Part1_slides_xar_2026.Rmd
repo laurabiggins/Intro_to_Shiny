@@ -37,7 +37,7 @@ to create beautiful user interfaces.
 
 # Shiny cheatsheet  
 
-https://shiny.rstudio.com/images/shiny-cheatsheet.pdf  
+https://shiny.posit.co/r/articles/start/cheatsheet/ 
 
 ---
 
@@ -46,7 +46,6 @@ background-image: url("images/shiny_cheatsheet.PNG")
 background-position: center
 background-size: 80%
 
-https://shiny.rstudio.com/images/shiny-cheatsheet.pdf 
 
 ---
 
@@ -128,7 +127,7 @@ class: inverse
 ```{r, eval=FALSE, echo=TRUE}
 library(shiny)
 
-ui <- fluidPage(
+ui <- page_fillable(
   
 )
 
@@ -171,16 +170,17 @@ class: inverse
 
 ```{r, eval=FALSE, echo=TRUE}
 library(shiny)
+library(bslib)
 
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Simple app"),
   
   radioButtons(inputId = "letter_choice", 
-              label    = "select a letter", 
+              label    = "Select a letter", 
               choices  = LETTERS[1:5]),
   numericInput(inputId = "number_choice",
-               label   = "type in a number",
+               label   = "Type in a number",
                value   = 4),
   textOutput(outputId = "message")
 )
@@ -216,16 +216,16 @@ class: inverse
 
 .right70-column[
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Simple app"),
   
   radioButtons(inputId = "letter_choice", 
-              label    = "select a letter", 
+              label    = "Select a letter", 
               choices  = LETTERS[1:5]),
   
   numericInput(inputId = "number_choice",
-               label   = "type in a number",
+               label   = "Type in a number",
                value   = 4),
   
   textOutput(outputId = "message")
@@ -235,9 +235,9 @@ ui <- fluidPage(
 ]
 
 ???
-We almost always start the UI code by calling the function fluidPage(), there are fixedPage and fillPage options, but fluidPage is most often used as it allows the application windows to be resized much more easily.  
-So fluidPage is a shiny function, and to that we pass the elements that we want to be displayed in the app. We’ll go through the components in more detail later, but let’s have a quick look now.  
-Each of these functions is Shiny specific, and they set out what appears where in the app. The functions can be looked up in the R help just as you would with other functions, 
+We can start the UI code by calling the function page_fillable(). This is actually from the bslib package but has taken over as standard way of creating layouts. There are other options that we'll come on to look at, but this essentially means the app will fill the available space.
+So page_fillable is a function, and to that we pass the elements that we want to be displayed in the app. We’ll go through the components in more detail later, but let’s have a quick look now.  
+Each of these functions is Shiny specific, and they set out what appears where in the app. The functions can be looked up in the R help just as you would with other functions. 
 ### titlePanel  
 The first component is a titlePanel and that can just take a piece of text and essentially makes it large and tags it as the title. That one is very simple.
 ### radioButtons
@@ -255,7 +255,7 @@ class: inverse
 # Inputs
 
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(  
+ui <- page_fillable(  
   radioButtons(inputId = "letter_choice", label = "choose a letter", ...),
   numericInput(inputId = "number_choice", label = "", ...)
 )
@@ -279,7 +279,7 @@ When you use one of the input functions, in this case radioButtons and numericIn
 
 --
 
-The input object is a special type of named list (a reactiveValues object).
+The input object is a special type of named list.
 
 --
 
@@ -287,7 +287,7 @@ The input object is passed to the server function and the values of the inputs c
 
 --
 
-The input object is read-only
+The input object is read-only.
 
 ---
 
@@ -296,7 +296,7 @@ class: inverse
 ### Define inputs in the UI
 
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(  
+ui <- page_fillable(  
   radioButtons(inputId = "letter_choice", ...),
   numericInput(inputId = "number_choice", ...)
 )
@@ -365,7 +365,7 @@ class: inverse
 # Outputs
 
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(  
+ui <- page_fillable(  
   ...,
   textOutput(outputId = "message")
 )
@@ -412,7 +412,7 @@ class: inverse
 
 
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(...,
+ui <- page_fillable(...,
   textOutput(outputId = "message")
 )
 ```
@@ -470,7 +470,7 @@ class: inverse
 ```{r, eval=FALSE, echo=TRUE}
 library(shiny)
 
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Simple app"),
   
@@ -608,7 +608,7 @@ class: inverse
 .right70-column[
 .text90[
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Simple app"),
   
@@ -673,7 +673,7 @@ class: inverse
 .text80[
 
 ```{r, eval=FALSE, echo=TRUE}
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Exercise 1.1"),
   
@@ -928,7 +928,7 @@ Unlike other inputs, fileInput() returns a data frame with 4 columns
 
 .left55-column[
 ```{r, echo = TRUE, eval = FALSE}
-ui <- fluidPage(
+ui <- page_fillable(
   
   titlePanel("Uploading files"),
   fileInput(inputId = "upload",  
@@ -966,7 +966,7 @@ library(readr)
 
 options(shiny.maxRequestSize = 10 * 1024^2) 
 
-ui <- fluidPage(
+ui <- page_fillable(
   titlePanel("Uploading files"),
   fileInput(inputId = "upload", 
             label = "Upload...",),

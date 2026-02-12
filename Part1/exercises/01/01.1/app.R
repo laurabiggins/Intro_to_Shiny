@@ -1,4 +1,5 @@
 library(shiny)
+library(bslib)
 
 # Task:
 # 
@@ -10,13 +11,11 @@ library(shiny)
 # 
 # 4. Add some extra information in output$info, telling the user what the value of n is. 
 
-ui <- fluidPage(
+ui <- page_sidebar(
   
-  titlePanel("Exercise 1.1"),
-  
-  sidebarLayout(
-    
-    sidebarPanel(
+  title = "Exercise 1.1",
+   
+  sidebar = sidebar(
       
       textInput(inputId = "user_name", 
                 label   = "Enter name"),
@@ -31,14 +30,11 @@ ui <- fluidPage(
                   max     = 100,
                   value   = 50),
     ),
-    
-    mainPanel(
       
-      textOutput(outputId = "supplied_name"),
-      textOutput(outputId = "info"),
-      plotOutput(outputId = "density_plot", height = "300px", width = "400px")
-    )
-  )
+    textOutput(outputId = "supplied_name"),
+    textOutput(outputId = "info"),
+    plotOutput(outputId = "density_plot", height = "300px", width = "400px")
+
 )
 
 server <- function(input, output, session) {
@@ -53,8 +49,9 @@ server <- function(input, output, session) {
   })
 
   output$density_plot <- renderPlot({
-    hist(rnorm(n = input$number_chosen * input$slider) , main = "") 
+    hist(rnorm(n = input$number_chosen * input$slider), main = "") 
   })
 }
 
 shinyApp(ui, server)
+

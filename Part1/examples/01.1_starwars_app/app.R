@@ -1,13 +1,14 @@
 library(shiny)
 library(tidyverse)
 library(DT)
+library(bslib)
 
-ui <- fluidPage(
+ui <- page_sidebar(
 
-  titlePanel("Star wars app"),
+  title = "Star wars app",
   
-  sidebarLayout(
-    sidebarPanel(
+  sidebar = sidebar(
+   # sidebarPanel(
       radioButtons(
         inputId = "colour_option", 
         label = "Colour by...", 
@@ -15,7 +16,7 @@ ui <- fluidPage(
           "homeworld", 
           "species", 
           "eye colour" = "eye_color"
-        )
+       # )
       ),
       br(),
       p("Select rows from the data table, 
@@ -24,15 +25,15 @@ ui <- fluidPage(
       actionButton("update", "Update plot"),
       width = 2
     ),
-    mainPanel(
+   # mainPanel(
         #actionButton("browser", "browser"),
         plotOutput("bar_plot", height = 300),
         dataTableOutput("starwars_table"),
         br(),
         actionButton("clear_selections", 
                      "Clear selected rows"),
-        width = 10
-    )
+   #     width = 10
+  #  )
   )
 )
 

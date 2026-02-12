@@ -6,14 +6,14 @@ ui <- page_fillable(
     titlePanel("Simple app"),
     
     radioButtons(inputId  = "letter_choice", 
-                  label   = "select a letter", 
+                  label   = "Select a letter", 
                   choices = LETTERS[1:5]),
     
     numericInput(inputId = "number_choice",
-                 label   = "type in a number",
+                 label   = "Type in a number",
                  value   = 4),
  
-    h4(textOutput(outputId = "message"))
+    textOutput(outputId = "message")
 )
 
 server <- function(input, output, session) {
