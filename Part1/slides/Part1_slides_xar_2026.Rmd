@@ -32,7 +32,7 @@ install.packages("shiny")
 ```
 
 Installing Shiny will also install another package `{bslib}` which can be used 
-to create beautiful user interfaces.  
+to create beautiful user interfaces.   
   
 
 # Shiny cheatsheet  
